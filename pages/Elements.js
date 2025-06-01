@@ -11,10 +11,20 @@ this.brokenLinksPage=page.locator("#item-6");
 this.validImage=page.locator("//div[@class=\"col-12 mt-4 col-md-6\"]//img[@src=\"/images/Toolsqa.jpg\"]")
 this.brokenImage=page.locator("//div[@class=\"col-12 mt-4 col-md-6\"]//img[@src=\"/images/Toolsqa_1.jpg\"]")
 this.links=page.locator("//div[@class='col-12 mt-4 col-md-6']//a");
+this.uploadDownloadLink=page.locator("#item-7");
+this.downloadBttn=page.locator("#downloadButton");
+
+
+    }
+    async clickOnUploadDownloadLink(){
+        await this.uploadDownloadLink.first().click();
+    }
+async clickOnDownloadButton(){
+        await this.downloadBttn.click();
     }
 
     async getAllLinks() {
-        return await this.links;
+        return await this.links;;
     }
 async clickOnElementPage(){
     await this.elementPage.click();

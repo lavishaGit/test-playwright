@@ -1,4 +1,5 @@
 import { link } from "fs";
+import fs from "fs";
 import ElementsPage from "../pages/Elements.js";
 
 
@@ -12,12 +13,13 @@ test.describe('FormsPage Tests',()=>{
         elementsPage=new ElementsPage(page);
   await elementsPage.goToApplication();
   await elementsPage.clickOnElementPage();
-  await elementsPage.clickOnBrokenLinkPage();
  
 
     })
 
     test('Verify valid image and Broken image', async ({ page }) => {
+        await elementsPage.clickOnBrokenLinkPage();
+ 
 
    await expect(page).toHaveURL(/.*broken/);   //.* — means any character (.) repeated zero or more times (*).
    const validImage=await elementsPage.getValidImage();
@@ -32,13 +34,14 @@ const brokenImage=await elementsPage.getBrokenImage();
 await expect(brokenImage).toHaveScreenshot('brokenImage.png'); // Verify the broken image is displayed correctly
 //functional testing        
 await expect(brokenImage).toBeVisible(); // Verify the broken image is visible
-await expect(brokenImage).toBeFalsy() // Verify the broken image is truthy (exists)
+// await expect(brokenImage).toBeFalsy() // Verify the broken image is truthy (exists)
  
     })
 
    
 
-test.only('Verify broken link', async ({ page }) => {
+test('Verify broken link', async ({ page }) => {
+    await elementsPage.clickOnBrokenLinkPage();
     const links= await elementsPage.getAllLinks();
     const count= await links.count();
 
@@ -66,4 +69,28 @@ if(link){
 }
 })
 
-})
+
+test('Verify downloaded file', async ({ page }) => {
+await  elementsPage.clickOnUploadDownloadLink();
+
+
+
+
+const download=await Promise.all([
+
+page.waitForEvent('download'), // Wait for the download event
+elementsPage.clickOnDownloadButton() // Click the download button
+])
+//gives temparary path of downloaded file
+const path=await download[0].path();
+console.log(`Downloaded file path: ${path}`);
+expect(path).toBeTruthy();
+
+//
+const fileName = download[0].suggestedFilename();
+console.log(`Downloaded filename: ${fileName}`);
+await download[0].saveAs(fileName);
+await expect(fileName).toBe('sampleFile.jpeg'); // Verify the downloaded file name
+
+
+})})
