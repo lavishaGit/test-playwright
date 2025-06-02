@@ -12,10 +12,25 @@ this.validImage=page.locator("//div[@class=\"col-12 mt-4 col-md-6\"]//img[@src=\
 this.brokenImage=page.locator("//div[@class=\"col-12 mt-4 col-md-6\"]//img[@src=\"/images/Toolsqa_1.jpg\"]")
 this.links=page.locator("//div[@class='col-12 mt-4 col-md-6']//a");
 this.uploadDownloadLink=page.locator("#item-7");
-this.downloadBttn=page.locator("#downloadButton");
+this.downloadBttn=page.locator("#downloadButton");  
+this.dynamicPropertiesLink=page.locator("#item-8");
+this.enabledBttn=page.locator("#colorChange");
 
 
     }
+
+
+    async clickOnDynamicPropertiesLink(){ 
+      await this.dynamicPropertiesLink.first().click();
+        
+
+    }
+
+enabledButton(){
+return   this.enabledBttn;
+        
+            }
+            
     async clickOnUploadDownloadLink(){
         await this.uploadDownloadLink.first().click();
     }

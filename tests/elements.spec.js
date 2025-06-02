@@ -93,4 +93,21 @@ await download[0].saveAs(fileName);
 await expect(fileName).toBe('sampleFile.jpeg'); // Verify the downloaded file name
 
 
-})})
+})
+
+
+
+test('Verify Dynamic properties', async ({ page }) => {
+
+await elementsPage.clickOnDynamicPropertiesLink();
+await expect(page).toHaveURL(/.*dynamic-properties/); // Verify the URL contains 'dynamic-properties'
+//page.waitForSelector(elementsPage.enabledButton());  //By default, it waits for 30 seconds (30,000 ms)
+await (elementsPage.enabledButton()).waitFor({ state: 'visible', timeout: 5000 });
+
+await expect(elementsPage.enabledButton()).toBeVisible({timeout:5000}) // Verify the button is vivsible after 5 seconds
+//await expect(enableButton).toBeEnabled({ timeout: 7000 }); 
+await expect(elementsPage.enabledButton()).toHaveText(/Color Change/); // Verify the button text for dynamic properties
+
+})
+
+})x 
