@@ -26,7 +26,7 @@ await expect (newTab[0]).toHaveURL(/sample/);
 
 
 })
-test.only('verify New Window ', async ({page}) => {
+test('verify New Window ', async ({page}) => {
 
     await alertsFramesWindowsPage. clickOnBrowserWindow();
     await expect(page).toHaveURL(/.*browser-windows/); 
@@ -61,11 +61,42 @@ test('verify Frames', async ({page}) => {
 
 
 })
+test.only('verify Alerts',async ({page})=>{
+
+await alertsFramesWindowsPage.getAlertsLink().click();
+await expect(page).toHaveURL(/.*alerts/); // Verify the URL contains 'alerts'
+ // Click on the Alert button
+
+await page.once('dialog', async (dialog) => {
+    console.log(`Dialog message: ${dialog.message()}`);
+    await dialog.accept(); // Accept the alert dialog
+})
+
+await alertsFramesWindowsPage.clickOnAlertButton().click();
+
+
+// await page.on('dialog', async (dialog) => {
+
+//     console.log(`Dialog message: ${dialog.message()}`);  // registered dialog event listener
+//     await dialog.accept(); // Accept the timer alert dialog
+
+// })
 
 
 
+// await alertsFramesWindowsPage.clickOnTimerAlertButton().click();
+// await page.waitForTimeout(5000); // optional, only if you want to visibly wait
+// await alertsFramesWindowsPage.clickOnConfirmButton().click();
+// await expect(await alertsFramesWindowsPage.getConfirmResult()).toHaveText("You selected Ok") // Click on the Confirm button
+// trigger
+
+page.once('dialog', async (dialog) => {
+    console.log(`Prompt Alert: ${dialog.message()}`);
+    await dialog.accept('Lavisha'); // Provide input text to the prompt
+  });
+  await alertsFramesWindowsPage.clickOnPromptButton().click();
 
 
-
+})
 
 })

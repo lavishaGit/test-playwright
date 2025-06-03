@@ -14,8 +14,35 @@ export class AlertsFramesWindowsPage {
   this.frame2locator=page.frameLocator("#frame2");
 //this.frameHeading= page.locator("h1#sampleHeading"); // Locator for the frame heading    in correct way
 this.frameHeadingSelector = "h1#sampleHeading"; // just a string
+
+this.alertLink=page.locator("//li/span[text()='Alerts']"); // Locator for the Alerts, Frame & Windows heading
+this.alertBttn=page.locator('#alertButton');
+this.timerAlertBttn=page.locator('#timerAlertButton');
+this.confirmBttn=page.locator("#confirmButton");
+this.confirmResult=page.locator("#confirmResult");
+this.promptResult=page.locator("#promtButton");
+
+
+    }
+    clickOnPromptButton() {
+        return this.promptResult; // Click on the Prompt button
+    }
+    getConfirmResult() {
+        return this.confirmResult; // Returns the locator for the confirm result
+    }
+    clickOnConfirmButton() {
+        return this.confirmBttn; // Click on the Confirm button
     }
 
+  clickOnTimerAlertButton() {
+   return this.timerAlertBttn;// Click on the Timer Alert button
+    }
+  clickOnAlertButton() {
+    return  this.alertBttn;// Click on the Alert button
+    }
+ getAlertsLink() {
+        return  this.alertLink; // Returns the locator for the Alerts link
+    }
 
     async getFrame2Locator() {
         return this.frame2locator.first(); // Returns the second frame locator

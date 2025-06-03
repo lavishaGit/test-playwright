@@ -32,7 +32,7 @@ export class DashboardPage{
     const href = await linkLocator.getAttribute("href"); // Get href
     const IsDisplayed = await linkLocator.isVisible();   // Check visibility
 
-          linksText.push({href, IsDisplayed});
+          linksText.push({href, IsDisplayed});//[ { href: "/home", isDisplayed: true }, { href: "/contact", isDisplayed: false }, ]
         }
     
         return linksText;
