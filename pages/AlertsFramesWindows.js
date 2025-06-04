@@ -21,9 +21,31 @@ this.timerAlertBttn=page.locator('#timerAlertButton');
 this.confirmBttn=page.locator("#confirmButton");
 this.confirmResult=page.locator("#confirmResult");
 this.promptResult=page.locator("#promtButton");
-
+this.nestedFrames=page.locator("text=Nested Frames");
+this.firstFrame=page.frameLocator('#frame1');
+this.childFrame=this.firstFrame.frameLocator("//iframe[@srcdoc ='<p>Child Iframe</p>']"); // Locator for the first frame
+this. parentText = this.firstFrame.locator('text= Parent frame');
+this. childText = this.childFrame.locator('text= Child Iframe'); // Locator for the child frame text
 
     }
+    async getChildText() {
+        return await this.childText.last().textContent(); // Returns the locator for the child text
+    }
+     async getParentText() {
+        return await this.parentText.first().textContent(); // Returns the locator for the parent text
+    }
+    async clickOnNestedFrames() {
+        await this.nestedFrames.click(); // Click on the Nested Frames link
+    }
+  
+    getFirstFrame() {
+        return this.firstFrame; // Returns the first frame locator
+    }
+    getChildFrame() {
+        return this.childFrame; // Returns the child frame locator
+    }
+  
+
     clickOnPromptButton() {
         return this.promptResult; // Click on the Prompt button
     }

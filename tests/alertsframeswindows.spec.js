@@ -61,7 +61,7 @@ test('verify Frames', async ({page}) => {
 
 
 })
-test.only('verify Alerts',async ({page})=>{
+test('verify Alerts',async ({page})=>{
 
 await alertsFramesWindowsPage.getAlertsLink().click();
 await expect(page).toHaveURL(/.*alerts/); // Verify the URL contains 'alerts'
@@ -98,5 +98,15 @@ page.once('dialog', async (dialog) => {
 
 
 })
+
+test.only('verifyNestedFrames', async ({page}) => {
+await alertsFramesWindowsPage.clickOnNestedFrames();
+
+const firstFrame = await alertsFramesWindowsPage.getFirstFrame();
+expect(await alertsFramesWindowsPage.getParentText()).toContain('Parent'); // Verify that the first frame exists
+const secondFrame=await alertsFramesWindowsPage.getChildFrame();
+expect(await alertsFramesWindowsPage.getChildText()).toContain('Child'); // Verify that the second frame exists
+})
+
 
 })
