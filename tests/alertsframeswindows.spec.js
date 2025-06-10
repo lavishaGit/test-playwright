@@ -99,7 +99,7 @@ page.once('dialog', async (dialog) => {
 
 })
 
-test.only('verifyNestedFrames', async ({page}) => {
+test('verifyNestedFrames', async ({page}) => {
 await alertsFramesWindowsPage.clickOnNestedFrames();
 
 const firstFrame = await alertsFramesWindowsPage.getFirstFrame();
