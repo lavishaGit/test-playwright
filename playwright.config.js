@@ -15,7 +15,7 @@ import { defineConfig, devices } from '@playwright/test';
 export default defineConfig({
   //testDir: './tests',
   testDir: './tests',
-testMatch: 'alertsframeswindows.spec.js',  
+ testMatch: 'alertsframeswindows.spec.js',  
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -25,20 +25,21 @@ testMatch: 'alertsframeswindows.spec.js',
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: [['html','github']],
  
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
+
     launchOptions: {
-      args: ['--start-maximized']
+      args: ['--start-maximized','--disable-popup-blocking', '--disable-notifications']
     },
     viewport: null,
-    headless: false,   //--headed on cmd 
+    headless:true,   //--headed on cmd 
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+    trace: 'retain-on-failure',
     screenshots: 'only-on-failure',
     video:'on'
   },
@@ -51,10 +52,10 @@ testMatch: 'alertsframeswindows.spec.js',
    // keeps it maximized
     },
 
-    // {
-    //   name: 'firefox',
-    //   use: { ...devices['Desktop Firefox'] },
-    // },
+    {
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'] },
+    },
 
     // {
     //   name: 'webkit',
