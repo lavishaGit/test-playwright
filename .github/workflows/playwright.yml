@@ -1,7 +1,7 @@
 name: Playwright Tests
 on:
   schedule:
-    - cron: '30 17 * * *'
+    - cron: '45 17 * * *'
 
   # push:
   #   branches: [ main, master ]
