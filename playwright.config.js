@@ -15,9 +15,9 @@ import { defineConfig, devices } from '@playwright/test';
 export default defineConfig({
   //testDir: './tests',
   testDir: './tests',
- testMatch: 'alertsframeswindows.spec.js',  
+ //testMatch: 'alertsframeswindows.spec.js',  
   /* Run tests in files in parallel */
-  fullyParallel: true,
+  fullyParallel: false,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
@@ -34,7 +34,7 @@ export default defineConfig({
       args: ['--start-maximized','--disable-popup-blocking', '--disable-notifications']
     },
     viewport: null,
-    headless:true,   //--headed on cmd 
+    headless:false,   //--headed on cmd 
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
 
@@ -52,10 +52,10 @@ export default defineConfig({
    // keeps it maximized
     },
 
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
+    // {
+    //   name: 'firefox',
+    //   use: { ...devices['Desktop Firefox'] },
+    // },
 
     // {
     //   name: 'webkit',

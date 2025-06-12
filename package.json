@@ -8,7 +8,11 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "@playwright/test": "^1.51.1",
+    "@playwright/test": "^1.52.0",
     "@types/node": "^22.14.0"
+  },
+  "dependencies": {
+    "@cliqz/adblocker-playwright": "^1.34.0",
+    "cross-fetch": "^4.1.0"
   }
 }
