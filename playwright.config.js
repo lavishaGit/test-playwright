@@ -30,9 +30,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
 
-    launchOptions: {
-      args: ['--start-maximized','--disable-popup-blocking', '--disable-notifications']
-    },
+    
     viewport: null,
     headless:true,   //--headed on cmd 
     /* Base URL to use in actions like `await page.goto('/')`. */
@@ -48,7 +46,11 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { browserName: 'chromium' },
+      use:{ browserName: 'chromium' ,
+      launchOptions: {
+        args: ['--start-maximized','--disable-popup-blocking', '--disable-notifications']
+      }
+    }
    // keeps it maximized
     },
 
