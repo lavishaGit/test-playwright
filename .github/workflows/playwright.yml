@@ -1,15 +1,16 @@
 name: Playwright Tests
 on:
-  schedule:
-    - cron: '45 2 * * *'
-
-  # push:
-  #   branches: [ main, master ]
+push:
+    branches: [ main, master ]
   # pull_request:
   #   branches: [ main, master ]
+
+  # schedule:
+  #   - cron: '45 2 * * *'
+
 jobs:
   test:
-    timeout-minutes: 60
+    timeout-minutes: 120
     runs-on: ubuntu-latest
     steps:
     # - name: Print scheduled time
